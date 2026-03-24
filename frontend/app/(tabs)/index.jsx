@@ -4,6 +4,7 @@ import Styles from "../../constants/Styles"
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { useContext } from "react"
 import { UserContext } from "../../context/UserContext"
+import Colors from "../../constants/Colors"
 
 export default function HomeTab() {
 	//const headerText = user ? "Welcome Back" : "Welcome to Flowsie"

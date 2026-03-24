@@ -1,18 +1,29 @@
 import { useCallback, useEffect, useState } from "react"
 import { UserContext } from "../context/UserContext"
 import { ThemeProvider } from "@react-navigation/native"
-import { DefaultTheme } from "../constants/Colors"
+import { Theme } from "../constants/Styles"
 import { Stack } from "expo-router"
 import * as SecureStore from "expo-secure-store"
 import * as SplashScreen from "expo-splash-screen"
+import { useFonts } from "expo-font"
+import {
+	Inter_400Regular,
+	Inter_600SemiBold,
+	Inter_800ExtraBold,
+} from "@expo-google-fonts/inter"
 
 // Keeps splash screen visible while fetching user details
-// SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync()
 
 export default function App() {
-	const [appIsReady, setAppIsReady] = useState(false)
 	const [user, setUser] = useState(null)
+	const [fontLoaded, fontError] = useFonts({
+		Inter_400Regular,
+		Inter_600SemiBold,
+		Inter_800ExtraBold,
+	})
 
+	/** 
 	useEffect(() => {
 		async function getUserFromStorage() {
 			try {
@@ -29,6 +40,16 @@ export default function App() {
 
 		getUserFromStorage()
 	}, [])
+	*/
+	useEffect(() => {
+		if (fontLoaded || fontError) {
+			SplashScreen.hideAsync()
+		}
+	}, [fontLoaded, fontError])
+
+	if (!fontLoaded && !fontError) {
+		return null
+	}
 
 	// const onLayoutRootView = useCallback(async () => {
 	// 	if (appIsReady) {
@@ -41,7 +62,7 @@ export default function App() {
 	// }
 
 	return (
-		<ThemeProvider value={DefaultTheme}>
+		<ThemeProvider value={Theme}>
 			<UserContext.Provider value={{ user: user, setUser: setUser }}>
 				<Stack>
 					<Stack.Screen name="(tabs)" options={{ headerShown: false }} />

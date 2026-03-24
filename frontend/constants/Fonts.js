@@ -1,6 +1,6 @@
 import { Platform } from "react-native"
 
-export default fonts = {
+const Fonts = {
 	InterRegular: Platform.select({
 		android: "Inter_400Regular",
 		ios: "Inter-Regular",
@@ -14,3 +14,5 @@ export default fonts = {
 		ios: "Inter-SemiBold"
 	})
 }
+
+export default Fonts

@@ -1,4 +1,4 @@
-export default Colors = {
+const Colors = {
 	// background colors
 	background: "#fefcfb",
 	tintedBackground: "#f8ece7", // "rgba(247,234,229,0.9)"
@@ -15,13 +15,4 @@ export default Colors = {
 	border: "#e3beb5",
 }
 
-export const DefaultTheme = {
-	dark: false,
-	colors: {
-		primary: Colors.ui, // doesn't seem to be used anywhere?
-		background: Colors.background,
-		card: Colors.background, // background for tab bar
-		text: Colors.text,
-		border: Colors.background, // border color for tab bar
-	},
-}
+export default Colors
